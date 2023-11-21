@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Assignment_3 {
@@ -67,7 +66,9 @@ public class Assignment_3 {
 				userInput.nextLine();
 				break;
 			case 3:
-
+				MenuOptions.optionThree(productsList, userInput);
+				System.out.println("Press Enter to return to main menu...");
+				userInput.nextLine();
 				break;
 			case 4:
 
@@ -102,9 +103,5 @@ public class Assignment_3 {
 		
 		System.out.println("Exiting the program.");
 		userInput.close();
-	}
-	
-	public static void populateList(ArrayList<Product> productList) {
-		
 	}
 }

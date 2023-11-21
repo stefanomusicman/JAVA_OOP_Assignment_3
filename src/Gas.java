@@ -2,8 +2,8 @@
 public class Gas extends Product {
 	private double liters;
 	
-	public Gas(String name,double price,double liters) {
-		super(name, price);
+	public Gas(double price,double liters) {
+		super("Gas", price);
 		this.liters = liters;	
 	}
 	

@@ -10,8 +10,8 @@ public class Sandwich extends Product implements ExpiryDate {
 	public Sandwich(String name, double price, int calories, String mainIngredient, String size) throws InvalidCaloriesException {
 		super(name, price);
 		
-		if(calories < 0 || calories > 300) {
-			throw new InvalidCaloriesException("Calories must be between 0 and 300");
+		if(calories < 0 || calories > 3000) {
+			throw new InvalidCaloriesException("Calories must be between 0 and 3000");
 		}
 		
 		

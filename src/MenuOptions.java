@@ -133,13 +133,30 @@ public class MenuOptions {
 			} catch(Exception e) {
 				System.out.println(e);
 			}
+		}
+	}
+	
+	public static void optionThree(ArrayList<Product> productList, Scanner scanner) {
+		double amountOfLiters;
+		
+		while(true) {
+			System.out.print("How many Liters would you like to add: ");
+			String input = scanner.nextLine();
 			
+			if(input.trim().isEmpty()) {
+				System.out.println("Field cannot be empty. ");
+				continue;
+			}
+			
+			try {
+				amountOfLiters = Double.parseDouble(input);
+				break;
+			} catch(Exception e) {
+				System.out.println("Must be a number ");
+			}
 		}
 		
-		
-		
-//		Sandwich sandwich = new Sandwich("Sandwich", price, calories, mainIngredient, size);
-//		productList.add(sandwich);
-//		System.out.println("The Sandwich has been added.");
+		Gas.totalLiters += amountOfLiters;
+		System.out.println("Gas has been successfully added!");
 	}
 }
