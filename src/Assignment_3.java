@@ -103,4 +103,8 @@ public class Assignment_3 {
 		System.out.println("Exiting the program.");
 		userInput.close();
 	}
+	
+	public static void populateList(ArrayList<Product> productList) {
+		
+	}
 }

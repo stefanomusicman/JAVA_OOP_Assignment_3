@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class MenuOptions {
+public class MenuOptions {	
 	public static void optionOne(ArrayList<Product> productList) {
 		// Create a random integer between 50 and 200 to represent the calories of a chocolate bar
 		Random random = new Random();
@@ -26,18 +26,21 @@ public class MenuOptions {
 
 			if(mainIngredient.trim().isEmpty()) {
 				System.out.print("Invalid input! Field cannot be empty! ");
+			} else if(!mainIngredient.equals("chicken") && !mainIngredient.equals("meat") && !mainIngredient.equals("veggie")) {
+				System.out.print("Please choose a valid ingredient (chicken, meat or veggie) ");
+				continue;
 			} else {
 				break;
 			}
 		}
 		
 		while(true) {
-			System.out.print("What is the size of your sandwich(medium, large): ");
+			System.out.print("What is the size of your sandwich(small, medium, large): ");
 			size = scanner.nextLine();
 
 			if(size.trim().isEmpty()) {
 				System.out.print("Invalid input! Field cannot be empty! ");
-			} else if(!size.equals("medium") && !size.equals("large")) {
+			} else if(!size.equals("small") && !size.equals("medium") && !size.equals("large")) {
 				System.out.print("Please choose a valid size, either medium or large. ");
 				continue;
 			} else {
@@ -45,8 +48,7 @@ public class MenuOptions {
 			}
 		}
 		
-		price = (size == "medium" ? 5.25 : 7.50);
-		calories = (size == "medium" ? 250 : 400);
+		
 		
 		Sandwich sandwich = new Sandwich("Sandwich", price, calories, mainIngredient, size);
 		productList.add(sandwich);
