@@ -3,15 +3,41 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class MenuOptions {	
-	public static void optionOne(ArrayList<Product> productList) {
-		// Create a random integer between 50 and 200 to represent the calories of a chocolate bar
-		Random random = new Random();
-		int randomNumber = random.nextInt(151) + 50;
+	public static void optionOne(ArrayList<Product> productList, Scanner scanner) {
+		String chocolate;
+		int calories;
 		
-		// Add the chocolate bar to the list
-		Edible chocolateBar = new Edible("Chocolate Bar", 2.50, randomNumber);
-		productList.add(chocolateBar);
-		System.out.println("Chocolate Bar has been added!");
+		while(true) {
+			System.out.print("What is the name of the chocolate bar: ");
+			chocolate = scanner.nextLine();
+			
+			if(chocolate.trim().isEmpty()) {
+				System.out.println("Field cannot be empty.");
+			} else {
+				break;
+			}
+		}
+		
+		while(true) {
+			System.out.print("Enter the amount of calories: ");
+			String input = scanner.nextLine();
+			
+			if(input.trim().isEmpty()) {
+				System.out.println("Field cannot be empty.");
+				continue;
+			}
+			
+			try {
+				calories = Integer.parseInt(input);
+				
+				Chocolate chocolateBar = new Chocolate("Chocolate Bar", 2.50, calories);
+				productList.add(chocolateBar);
+				System.out.println("Chocolate Bar has been added!");
+				break;
+			} catch(Exception e) {
+				System.out.println(e);
+			}
+		}
 	}
 	
 	public static void optionTwo(ArrayList<Product> productList, Scanner scanner) {
@@ -50,8 +76,8 @@ public class MenuOptions {
 		
 		
 		
-		Sandwich sandwich = new Sandwich("Sandwich", price, calories, mainIngredient, size);
-		productList.add(sandwich);
-		System.out.println("The Sandwich has been added.");
+//		Sandwich sandwich = new Sandwich("Sandwich", price, calories, mainIngredient, size);
+//		productList.add(sandwich);
+//		System.out.println("The Sandwich has been added.");
 	}
 }

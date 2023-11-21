@@ -55,7 +55,7 @@ public class Assignment_3 {
 
 			switch (menuSelect) {
 			case 1:
-				MenuOptions.optionOne(productsList);
+				MenuOptions.optionOne(productsList, userInput);
 				// this will prompt the user to press any key before returning to the main menu
 				// it will allow them to see the confirmation message that the item had been added
 				System.out.println("Press Enter to return to main menu...");
