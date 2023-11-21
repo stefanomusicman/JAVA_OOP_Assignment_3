@@ -1,12 +1,16 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Edible extends Product implements ExpiryDate {
+public class Chocolate extends Product implements ExpiryDate {
 	private int calories;
 	private String expiryDate;
 	
-	public Edible(String name, double price, int calories) {
+	public Chocolate(String name, double price, int calories) throws InvalidCaloriesException {
 		super(name, price);
+		
+		if(calories < 0 || calories > 300) {
+			throw new InvalidCaloriesException("Calories must be between 0 and 300");
+		}
 		
 		this.calories = calories;
 		this.expiryDate = createExpiryDate();
@@ -22,17 +26,17 @@ public class Edible extends Product implements ExpiryDate {
 		
 		return expiryDate.format(formatter);
 	}
+
+	@Override
+	public String getExpiryDate() {
+		return expiryDate;
+	}
 	
 	public int getCalories() {
 		return calories;
 	}
 	
-	public String getExpiryDate() {
-		return expiryDate;
-	}
-	
 	public String toString() {
 		return String.format("Product Name: %s   ,   Price: %s  ,   Calories: %s,   Expiry Date: %s", getName(),getPrice(), getCalories(), getExpiryDate());
 	}
-	
 }
