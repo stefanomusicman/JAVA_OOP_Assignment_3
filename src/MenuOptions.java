@@ -159,4 +159,41 @@ public class MenuOptions {
 		Gas.totalLiters += amountOfLiters;
 		System.out.println("Gas has been successfully added!");
 	}
+	
+	public static void optionFour(ArrayList<Product> productList, Scanner scanner) {
+		String blend;
+		double price;
+		
+		while(true) {
+			System.out.print("Blend of the coffee: ");
+			blend = scanner.nextLine();
+			
+			if(blend.trim().isEmpty()) {
+				System.out.println("Field cannot be empty. ");
+			} else {
+				break;
+			}
+		}
+		
+		while(true) {
+			System.out.print("Price of the coffee: ");
+			String input = scanner.nextLine();
+			
+			if(input.trim().isEmpty()) {
+				System.out.println("Field cannot be empty. ");
+				continue;
+			}
+			
+			try {
+				price = Double.parseDouble(input);
+				
+				Coffee coffee = new Coffee(price, blend);
+				productList.add(coffee);
+				System.out.println("Coffee has been successfully added!");
+				break;
+			} catch(Exception e) {
+				System.out.println("Must be a number. ");
+			}
+		}
+	}
 }

@@ -5,8 +5,8 @@ public class Coffee extends Product implements ExpiryDate {
 	private String blend;
 	private String expiryDate;
 	
-	public Coffee(String name, double price, String blend) {
-		super(name, price);
+	public Coffee(double price, String blend) {
+		super("Coffee", price);
 		this.blend = blend;
 		this.expiryDate = createExpiryDate();
 	}
