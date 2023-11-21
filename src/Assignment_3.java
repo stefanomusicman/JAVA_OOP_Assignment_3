@@ -5,12 +5,12 @@ import java.util.Scanner;
 public class Assignment_3 {
 
 	public static void main(String[] args) {
-		ArrayList<Product> ediblesList = new ArrayList<Product>();
-		ArrayList<Product> gasList = new ArrayList<Product>();
-		startMenu(ediblesList, gasList);
+		ArrayList<Product> products = new ArrayList<Product>();
+
+		startMenu(products);
 	}
 
-	public static void startMenu(ArrayList<Product> foodList, ArrayList<Product> gasList) {
+	public static void startMenu(ArrayList<Product> productsList) {
 		Scanner userInput = new Scanner(System.in);
 		
 		int menuSelect;
@@ -55,14 +55,16 @@ public class Assignment_3 {
 
 			switch (menuSelect) {
 			case 1:
-				optionOne(foodList);
+				MenuOptions.optionOne(productsList);
 				// this will prompt the user to press any key before returning to the main menu
 				// it will allow them to see the confirmation message that the item had been added
 				System.out.println("Press Enter to return to main menu...");
 				userInput.nextLine();
 				break;
 			case 2:
-
+				MenuOptions.optionTwo(productsList, userInput);
+				System.out.println("Press Enter to return to main menu...");
+				userInput.nextLine();
 				break;
 			case 3:
 
@@ -100,16 +102,5 @@ public class Assignment_3 {
 		
 		System.out.println("Exiting the program.");
 		userInput.close();
-	}
-	
-	public static void optionOne(ArrayList<Product> foodList) {
-		// Create a random integer between 50 and 200 to represent the calories of a chocolate bar
-		Random random = new Random();
-		int randomNumber = random.nextInt(151) + 50;
-		
-		// Add the chocolate bar to the list
-		Edible chocolateBar = new Edible("Chocolate Bar", 2.50, randomNumber);
-		foodList.add(chocolateBar);
-		System.out.println("Chocolate Bar has been added!");
 	}
 }
