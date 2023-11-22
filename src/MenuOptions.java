@@ -205,4 +205,41 @@ public class MenuOptions {
 			}
 		}
 	}
+	
+	public static void optionSix(ArrayList<Product> productList) {
+		System.out.println("-------- Comparison of 2 Chocolate Bars --------");
+		Chocolate chocolateOne = null;
+		Chocolate chocolateTwo = null;
+		int chocolateCount = 0;
+		int compareResult;
+		
+		for (Object item : productList) {
+			if (item instanceof Chocolate) {
+                Chocolate chocolate = (Chocolate) item;
+
+                if (chocolateCount == 0) {
+                    chocolateOne = chocolate;
+                } else if (chocolateCount == 1) {
+                    chocolateTwo = chocolate;
+                    break;
+                }
+                chocolateCount++;
+            }
+		}
+		
+		if(chocolateOne == null || chocolateTwo == null) {
+			System.out.println("Cannot make comparison, we do not have 2 types of Chocolate Bars in stock. Sorry :(");
+		} else {
+			System.out.println("First Chocolate Bar: " + chocolateOne.toString());
+			System.out.println("Second Chocolate Bar: " + chocolateTwo.toString());
+			compareResult = chocolateOne.compareTo(chocolateTwo);
+			if(compareResult == -1) {
+				System.out.println("Result: The healthier chocolate bar is the first Option: " + chocolateOne.getName());
+			} else if(compareResult == 1) {
+				System.out.println("Result: The healthier chocolate bar is the second Option: " + chocolateTwo.getName());
+			} else {
+				System.out.println("Result: Both are equal.");
+			}
+		}
+	}
 }

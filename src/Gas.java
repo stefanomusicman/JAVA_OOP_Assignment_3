@@ -7,7 +7,7 @@ public class Gas extends Product {
 		this.liters = liters;	
 	}
 	
-	static double totalLiters;
+	static double totalLiters = 1000;
 	
 	public double getLiters() {
 		return liters;

@@ -1,7 +1,7 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Chocolate extends Product implements ExpiryDate {
+public class Chocolate extends Product implements ExpiryDate, Comparable<Chocolate> {
 	private int calories;
 	private String expiryDate;
 	
@@ -30,6 +30,20 @@ public class Chocolate extends Product implements ExpiryDate {
 	@Override
 	public String getExpiryDate() {
 		return expiryDate;
+	}
+	
+	@Override
+	public int compareTo(Chocolate o) {
+		int result = 0;
+		
+		if(this.calories < o.getCalories()) {
+			result = -1;
+		} else if (this.calories > o.getCalories()) {
+			result = 1;
+		} else {
+			result = 0;
+		}
+		return result;
 	}
 	
 	public int getCalories() {
