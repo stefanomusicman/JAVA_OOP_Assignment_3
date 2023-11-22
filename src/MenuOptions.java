@@ -196,4 +196,13 @@ public class MenuOptions {
 			}
 		}
 	}
+	
+	public static void optionFive(ArrayList<Product> productList) {
+		System.out.println("--------- List of Chocolate Bars in Stock ---------");
+		for (Object item : productList) {
+			if(item instanceof Chocolate) {
+				System.out.println(item.toString());
+			}
+		}
+	}
 }

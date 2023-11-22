@@ -76,7 +76,9 @@ public class Assignment_3 {
 				userInput.nextLine();
 				break;
 			case 5:
-
+				MenuOptions.optionFive(productsList);
+				System.out.println("Press Enter to return to main menu...");
+				userInput.nextLine();
 				break;
 			case 6:
 
