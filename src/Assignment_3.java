@@ -27,7 +27,7 @@ public class Assignment_3 {
 			System.out.println("10- Sell gas");
 			System.out.println("11- Sell coffee");
 			System.out.println("12- Display how much gas do we have in tanks");
-			System.out.println("13- Display how much gas do we have in tanks");
+			System.out.println("13- Display all items in stock");
 			System.out.println("14- Exit");	
 
 
