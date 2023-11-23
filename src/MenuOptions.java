@@ -139,6 +139,7 @@ public class MenuOptions {
 	public static void optionThree(ArrayList<Product> productList, Scanner scanner) {
 		double amountOfLiters;
 		
+		// add gas option rn only total
 		while(true) {
 			System.out.print("How many Liters would you like to add: ");
 			String input = scanner.nextLine();
@@ -244,6 +245,7 @@ public class MenuOptions {
 	}
 	
 	public static void optionSeven(ArrayList<Product> productList) {
+		//Show all sandwiches available 
 		System.out.println("--------- List of Sandwiches in Stock ---------");
 		for (Object item : productList) {
 			if(item instanceof Sandwich) {
@@ -253,30 +255,55 @@ public class MenuOptions {
 	}
 	
 	public static void optionEight(ArrayList<Product> productList) {
-		//Compare price sandwich
+		//Compare price sandwich *WIP*
 	}
 	
 	public static void optionNine() {
-		//Make choice choco sandwich
+		//Make choice choco sandwich *WIP*
 		//display choice 
 		// amount ?
 		//sold ???
 	}
 	
-	public static void optionTen() {
-		//sell gas
+	public static void optionTen(ArrayList<Product> productList, Scanner scanner) {
+		//sell gas *WIP*
 		System.out.println("-------- Sell Gas --------");
-		System.out.println("Enter the amount of liters :");
+		System.out.print("Enter the amount of liters :");
+		String input = scanner.nextLine();
+		
+		while(true) {
+			if(input.trim().isEmpty()) {
+				System.out.print("Invalid input! Field cannot be empty! ");
+			} else {
+				try {
+					Double userLiters = Double.parseDouble(input);
+					if (userLiters < 0 || userLiters > Gas.totalLiters) {
+						System.out.println("Invalid number of liters ");
+						continue;
+					}
+					break;
+				} catch(Exception e) {
+					System.out.print("Invalid input! Must be a number! ");
+					continue;
+				}
+			}
+		}
+		
+		//*add an option first*
+		//take option multi price then display
+		
+		//out ???
 	}
 	
 	public static void optionEleven() {
-		//sell coffee
+		//sell coffee *WIP*
 		System.out.println("-------- Sell Coffee --------");
 		System.out.println("Select a blend");
 		System.out.println("Number of coffee: ");
 	}
 	
 	public static void optionTwelve(ArrayList<Product> productList) {
+		//Simple display of total tank
 		System.out.println("-------- Gas available in the tank --------");
 		System.out.println("	" + Double.toString(Gas.totalLiters) +"  Liters");
 		
