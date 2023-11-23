@@ -1,23 +1,17 @@
 
 public class Gas extends Product {
-	private double liters;
 	
-	public Gas(double price,double liters) {
-		super("Gas", price);
-		this.liters = liters;	
+	public Gas(String name,double price) {
+		super(name, price);	
 	}
 	
 	static double totalLiters = 1000;
 	
-	public double getLiters() {
-		return liters;
-	}
-	
-	public double getPrice() {
-		return super.getPrice() * getLiters();	
+	public double getPrice(double usernum) {
+		return super.getPrice() * usernum;	
 	}
 	
 	public String toString() {
-		return String.format("Product Name: %s   ,  Price: %s   ,  Liters: %s  ", getName(),getPrice(),getLiters());
+		return String.format("Product Name: %s   ,  Price: %s   ,  Total Liters: %s  ", getName(),getPrice(), totalLiters);
 	}
 }

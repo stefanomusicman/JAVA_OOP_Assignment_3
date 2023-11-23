@@ -138,27 +138,99 @@ public class MenuOptions {
 	
 	public static void optionThree(ArrayList<Product> productList, Scanner scanner) {
 		double amountOfLiters;
+		int optionThreeSelect;
+		String nameGas;
+		double priceGas;
 		
-		// add gas option rn only total
-		while(true) {
-			System.out.print("How many Liters would you like to add: ");
-			String input = scanner.nextLine();
+		//Action selection
+		do {
+			System.out.println("1- Add fuel to the tank");	
+			System.out.println("2- Add gas to sell");
+			System.out.println("3- Back");
 			
-			if(input.trim().isEmpty()) {
-				System.out.println("Field cannot be empty. ");
-				continue;
+			while(true) {
+				System.out.print("Please make a selction (1-3): ");
+				String input = scanner.nextLine();
+
+				if(input.trim().isEmpty()) {
+					System.out.print("Invalid input! Field cannot be empty! ");
+				} else {
+
+					try {
+						optionThreeSelect = Integer.parseInt(input);
+						if (optionThreeSelect < 1 || optionThreeSelect > 3) {
+							System.out.println("Invalid selection! ");
+							continue;
+						}
+						break;
+					} catch(Exception e) {
+						System.out.print("Invalid input! Must be a number! ");
+						continue;
+					}
+				}
 			}
 			
-			try {
-				amountOfLiters = Double.parseDouble(input);
+			switch (optionThreeSelect) {
+			case 1:
+				//Add to the total tank
+				while(true) {
+					System.out.print("How many Liters would you like to add: ");
+					String input = scanner.nextLine();
+					
+					if(input.trim().isEmpty()) {
+						System.out.println("Field cannot be empty. ");
+						continue;
+					}
+					
+					try {
+						amountOfLiters = Double.parseDouble(input);
+						break;
+					} catch(Exception e) {
+						System.out.println("Must be a number ");
+					}
+				}
+				
+				Gas.totalLiters += amountOfLiters;
+				System.out.println("Gas has been successfully added!");
 				break;
-			} catch(Exception e) {
-				System.out.println("Must be a number ");
+			case 2:
+				//Add type of gas to sell
+				while(true) {
+					System.out.print("Name of the gas: ");
+					nameGas = scanner.nextLine();
+					if(nameGas.trim().isEmpty()) {
+						System.out.println("Field cannot be empty. ");
+					} else {
+						break;
+					}
+				}
+				
+				while(true) {
+					System.out.print("Price of the gas: ");
+					String input = scanner.nextLine();
+					
+					if(input.trim().isEmpty()) {
+						System.out.println("Field cannot be empty. ");
+						continue;
+					}
+					
+					try {
+						priceGas = Double.parseDouble(input);
+						
+						Gas gas = new Gas(nameGas,priceGas);
+						productList.add(gas);
+						System.out.println("Gas type has been successfully added!");
+						break;
+					} catch(Exception e) {
+						System.out.println("Must be a number. ");
+					}
+				}
+				
+				break;
 			}
-		}
+			
+		}while (optionThreeSelect!=3);
 		
-		Gas.totalLiters += amountOfLiters;
-		System.out.println("Gas has been successfully added!");
 	}
 	
 	public static void optionFour(ArrayList<Product> productList, Scanner scanner) {
@@ -256,27 +328,245 @@ public class MenuOptions {
 	
 	public static void optionEight(ArrayList<Product> productList) {
 		//Compare price sandwich *WIP*
+		System.out.println("-------- Comparison of 2 Sandwiches for lower price --------");
+		Sandwich sandwichOne = null;
+		Sandwich sandwichTwo = null;
+		int sandwichCount = 0;
+		int compareResult;
+		
+		for (Object item : productList) {
+			if (item instanceof Sandwich) {
+                Sandwich sandwich = (Sandwich) item;
+
+                if (sandwichCount == 0) {
+                    sandwichOne = sandwich;
+                } else if (sandwichCount == 1) {
+                    sandwichTwo = sandwich;
+                    break;
+                }
+                sandwichCount++;
+            }
+		}
+		
+		if(sandwichOne == null || sandwichTwo == null) {
+			System.out.println("Cannot make comparison, we do not have 2 types of sandwiches in stock.");
+		} else {
+			System.out.println("First sandwich: " + sandwichOne.toString());
+			System.out.println("Second sandwich: " + sandwichTwo.toString());
+			if(sandwichOne.getPrice() > sandwichTwo.getPrice()) {
+				System.out.println("The first sandwich is cheaper");
+			}
+			else {
+				System.out.println("The second sandwich is cheaper");
+			}
+			
+		}
 	}
 	
-	public static void optionNine() {
-		//Make choice choco sandwich *WIP*
-		//display choice 
-		// amount ?
-		//sold ???
+	public static void optionNine(ArrayList<Product> productList, Scanner scanner) {
+		//Make choice choco sandwich
+		int choiceSelect;
+		int userAmountProd;
+		double totalPrice;
+		int optionType;
+		
+		do {
+			//Inside for reset
+			int numberType = 1;
+			int selectCount = 1;
+			
+			System.out.println("--------- Sell an edible item ---------");
+			System.out.println("1- Chocolate Bar");	
+			System.out.println("2- Sandwich");
+			System.out.println("3- Back");
+			
+			while(true) {
+				System.out.print("Please make a selction (1-3): ");
+				String input = scanner.nextLine();
+
+				if(input.trim().isEmpty()) {
+					System.out.print("Invalid input! Field cannot be empty! ");
+				} else {
+
+					try {
+						choiceSelect = Integer.parseInt(input);
+						if (choiceSelect < 1 || choiceSelect > 3) {
+							System.out.println("Invalid selection! ");
+							continue;
+						}
+						break;
+					} catch(Exception e) {
+						System.out.print("Invalid input! Must be a number! ");
+						continue;
+					}
+				}
+			}
+			
+			switch (choiceSelect) {
+			case 1:
+				System.out.println("-------- Sell Chocolate Bar --------");
+				System.out.println("Select a Chocolate Bar");
+				
+				//List of available blends
+				for (Object item : productList) {
+					if(item instanceof Chocolate) {
+						System.out.println(numberType+"- "+item.toString());
+						numberType ++;
+					}
+				}
+				
+				while(true) {
+					String inputChoiceChoco = scanner.nextLine();
+
+					if(inputChoiceChoco.trim().isEmpty()) {
+						System.out.print("Invalid input! Field cannot be empty! ");
+					} else {
+
+						try {
+							optionType = Integer.parseInt(inputChoiceChoco);
+							if (optionType < 1 || optionType > numberType) {
+								System.out.println("Invalid selection! ");
+								continue;
+							}
+							break;
+						} catch(Exception e) {
+							System.out.print("Invalid input! Must be a number! ");
+							continue;
+						}
+					}
+				}
+				
+				//Number of choco to sell
+				System.out.print("Number of chocolate bar: ");
+				while(true) {
+					String inputChocoProd = scanner.nextLine();
+
+					if(inputChocoProd.trim().isEmpty()) {
+						System.out.print("Invalid input! Field cannot be empty! ");
+					} else {
+
+						try {
+							userAmountProd = Integer.parseInt(inputChocoProd);
+							if (userAmountProd < 1) {
+								System.out.println("Must have at least one chocolate bar ");
+								continue;
+							}
+							break;
+						} catch(Exception e) {
+							System.out.print("Invalid input! Must be a number! ");
+							continue;
+						}
+					}
+				}
+				
+				//Output of selected bar
+				for (Object item : productList) {
+					if(item instanceof Chocolate) {
+						if(selectCount == optionType) {
+							totalPrice = ((Chocolate) item).getPrice()*userAmountProd;
+							System.out.println("For "+userAmountProd+" chocolate bar(s) of "+((Chocolate) item).getName()+" the price will be: "+totalPrice);
+						}
+						else {
+							selectCount ++;
+						}	
+					}
+				}
+				
+				break;
+				
+			case 2:
+				System.out.println("-------- Sell Sandwich --------");
+				System.out.println("Select a Sandwich");
+				
+				//List of available blends
+				for (Object item : productList) {
+					if(item instanceof Sandwich) {
+						System.out.println(numberType+"- "+item.toString());
+						numberType ++;
+					}
+				}
+				
+				while(true) {
+					String inputChoiceSandwich = scanner.nextLine();
+
+					if(inputChoiceSandwich.trim().isEmpty()) {
+						System.out.print("Invalid input! Field cannot be empty! ");
+					} else {
+
+						try {
+							optionType = Integer.parseInt(inputChoiceSandwich);
+							if (optionType < 1 || optionType > numberType) {
+								System.out.println("Invalid selection! ");
+								continue;
+							}
+							break;
+						} catch(Exception e) {
+							System.out.print("Invalid input! Must be a number! ");
+							continue;
+						}
+					}
+				}
+				
+				//Number of sandwich to sell
+				System.out.print("Number of sandwiches: ");
+				while(true) {
+					String inputSandwichProd = scanner.nextLine();
+
+					if(inputSandwichProd.trim().isEmpty()) {
+						System.out.print("Invalid input! Field cannot be empty! ");
+					} else {
+
+						try {
+							userAmountProd = Integer.parseInt(inputSandwichProd);
+							if (userAmountProd < 1) {
+								System.out.println("Must have at least one sandwich ");
+								continue;
+							}
+							break;
+						} catch(Exception e) {
+							System.out.print("Invalid input! Must be a number! ");
+							continue;
+						}
+					}
+				}
+				
+				//Output of selected bar
+				for (Object item : productList) {
+					if(item instanceof Sandwich) {
+						if(selectCount == optionType) {
+							totalPrice = ((Sandwich) item).getPrice()*userAmountProd;
+							System.out.println("For "+userAmountProd+" sandwich(es) of "+((Sandwich) item).getName()+" the price will be: "+totalPrice);
+						}
+						else {
+							selectCount ++;
+						}	
+					}
+				}
+				break;
+			}
+				
+		} while (choiceSelect!=3);
 	}
 	
 	public static void optionTen(ArrayList<Product> productList, Scanner scanner) {
-		//sell gas *WIP*
+		//sell gas
+		double userLiters;
+		double totalPrice;
+		int numberGasType = 1;
+		int selectCount = 1;
+		int optionType;
+		
 		System.out.println("-------- Sell Gas --------");
 		System.out.print("Enter the amount of liters :");
 		String input = scanner.nextLine();
 		
+		//User liters value input
 		while(true) {
 			if(input.trim().isEmpty()) {
 				System.out.print("Invalid input! Field cannot be empty! ");
 			} else {
 				try {
-					Double userLiters = Double.parseDouble(input);
+					userLiters = Double.parseDouble(input);
 					if (userLiters < 0 || userLiters > Gas.totalLiters) {
 						System.out.println("Invalid number of liters ");
 						continue;
@@ -289,17 +579,126 @@ public class MenuOptions {
 			}
 		}
 		
-		//*add an option first*
-		//take option multi price then display
-		
-		//out ???
+		//generate list of available gas to sell
+			for (Object item : productList) {
+				if(item instanceof Gas) {
+					System.out.println(numberGasType+"- "+item.toString());
+					numberGasType ++;
+				}
+			}
+			
+			while(true) {
+				String inputType = scanner.nextLine();
+
+				if(inputType.trim().isEmpty()) {
+					System.out.print("Invalid input! Field cannot be empty! ");
+				} else {
+
+					try {
+						optionType = Integer.parseInt(inputType);
+						if (optionType < 1 || optionType > numberGasType) {
+							System.out.println("Invalid selection! ");
+							continue;
+						}
+						break;
+					} catch(Exception e) {
+						System.out.print("Invalid input! Must be a number! ");
+						continue;
+					}
+				}
+			}
+			
+			//Output of selected gas
+			for (Object item : productList) {
+				if(item instanceof Gas) {
+					if(selectCount == optionType) {
+						totalPrice = ((Gas) item).getPrice(userLiters);
+						System.out.println("For "+userLiters+" liters the price will be: "+totalPrice);
+					}
+					else {
+						selectCount ++;
+					}	
+				}
+			}
+			
 	}
 	
-	public static void optionEleven() {
-		//sell coffee *WIP*
+	public static void optionEleven(ArrayList<Product> productList, Scanner scanner) {
+		//sell coffee
+		int userCups;
+		double totalPrice;
+		int numberBlends = 1;
+		int selectCount = 1;
+		int optionType;
+		
 		System.out.println("-------- Sell Coffee --------");
 		System.out.println("Select a blend");
-		System.out.println("Number of coffee: ");
+		
+		//List of available blends
+		for (Object item : productList) {
+			if(item instanceof Coffee) {
+				System.out.println(numberBlends+"- "+item.toString());
+				numberBlends ++;
+			}
+		}
+		
+		while(true) {
+			String input = scanner.nextLine();
+
+			if(input.trim().isEmpty()) {
+				System.out.print("Invalid input! Field cannot be empty! ");
+			} else {
+
+				try {
+					optionType = Integer.parseInt(input);
+					if (optionType < 1 || optionType > numberBlends) {
+						System.out.println("Invalid selection! ");
+						continue;
+					}
+					break;
+				} catch(Exception e) {
+					System.out.print("Invalid input! Must be a number! ");
+					continue;
+				}
+			}
+		}
+		
+		//Number of cup to sell
+		System.out.print("Number of coffee: ");
+		while(true) {
+			String inputCup = scanner.nextLine();
+
+			if(inputCup.trim().isEmpty()) {
+				System.out.print("Invalid input! Field cannot be empty! ");
+			} else {
+
+				try {
+					userCups = Integer.parseInt(inputCup);
+					if (userCups < 1) {
+						System.out.println("Must have at least one coffee ");
+						continue;
+					}
+					break;
+				} catch(Exception e) {
+					System.out.print("Invalid input! Must be a number! ");
+					continue;
+				}
+			}
+		}
+		
+		//Output of selected blend
+		for (Object item : productList) {
+			if(item instanceof Coffee) {
+				if(selectCount == optionType) {
+					totalPrice = ((Coffee) item).getPrice()*userCups;
+					System.out.println("For "+userCups+" Cup(s) of "+((Coffee) item).getBlend()+" the price will be: "+totalPrice);
+				}
+				else {
+					selectCount ++;
+				}	
+			}
+		}
+		
 	}
 	
 	public static void optionTwelve(ArrayList<Product> productList) {
