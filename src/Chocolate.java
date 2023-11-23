@@ -1,15 +1,15 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Chocolate extends Product implements ExpiryDate {
+public class Chocolate extends Product implements ExpiryDate, Comparable<Chocolate> {
 	private int calories;
 	private String expiryDate;
 	
 	public Chocolate(String name, double price, int calories) throws InvalidCaloriesException {
 		super(name, price);
 		
-		if(calories < 0 || calories > 300) {
-			throw new InvalidCaloriesException("Calories must be between 0 and 300");
+		if(calories < 0 || calories > 3000) {
+			throw new InvalidCaloriesException("Calories must be between 0 and 3000");
 		}
 		
 		this.calories = calories;
@@ -30,6 +30,20 @@ public class Chocolate extends Product implements ExpiryDate {
 	@Override
 	public String getExpiryDate() {
 		return expiryDate;
+	}
+	
+	@Override
+	public int compareTo(Chocolate o) {
+		int result = 0;
+		
+		if(this.calories < o.getCalories()) {
+			result = -1;
+		} else if (this.calories > o.getCalories()) {
+			result = 1;
+		} else {
+			result = 0;
+		}
+		return result;
 	}
 	
 	public int getCalories() {

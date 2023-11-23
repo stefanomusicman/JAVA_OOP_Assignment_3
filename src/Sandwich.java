@@ -1,7 +1,7 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Sandwich extends Product implements ExpiryDate {
+public class Sandwich extends Product implements ExpiryDate,  Comparable<Sandwich> {
 	private String mainIngredient;
 	private String size;
 	private int calories;
@@ -10,8 +10,8 @@ public class Sandwich extends Product implements ExpiryDate {
 	public Sandwich(String name, double price, int calories, String mainIngredient, String size) throws InvalidCaloriesException {
 		super(name, price);
 		
-		if(calories < 0 || calories > 300) {
-			throw new InvalidCaloriesException("Calories must be between 0 and 300");
+		if(calories < 0 || calories > 3000) {
+			throw new InvalidCaloriesException("Calories must be between 0 and 3000");
 		}
 		
 		
@@ -30,6 +30,20 @@ public class Sandwich extends Product implements ExpiryDate {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd yyyy");
 		
 		return expiryDate.format(formatter);
+	}
+	
+	@Override
+	public int compareTo(Sandwich o) {
+		int result = 0;
+		
+		if(this.getPrice() < o.getPrice()) {
+			result = -1;
+		} else if (this.getPrice() > o.getPrice()) {
+			result = 1;
+		} else {
+			result = 0;
+		}
+		return result;
 	}
 
 
