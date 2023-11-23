@@ -86,22 +86,34 @@ public class Assignment_3 {
 				userInput.nextLine();
 				break;
 			case 7:
-
+				MenuOptions.optionSeven(productsList);
+				System.out.println("Press Enter to return to main menu...");
+				userInput.nextLine();
 				break;
 			case 8:
-
+				MenuOptions.optionEight(productsList);
+				System.out.println("Press Enter to return to main menu...");
+				userInput.nextLine();
 				break;
 			case 9:
-
+				MenuOptions.optionNine(productsList, userInput);
+				System.out.println("Press Enter to return to main menu...");
+				userInput.nextLine();
 				break;
 			case 10:
-
+				MenuOptions.optionTen(productsList, userInput);
+				System.out.println("Press Enter to return to main menu...");
+				userInput.nextLine();
 				break;
 			case 11:
-
+				MenuOptions.optionEleven(productsList, userInput);
+				System.out.println("Press Enter to return to main menu...");
+				userInput.nextLine();
 				break;
 			case 12:
-
+				MenuOptions.optionTwelve(productsList);
+				System.out.println("Press Enter to return to main menu...");
+				userInput.nextLine();
 				break;
 			}
 		
