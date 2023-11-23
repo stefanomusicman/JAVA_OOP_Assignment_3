@@ -242,4 +242,43 @@ public class MenuOptions {
 			}
 		}
 	}
+	
+	public static void optionSeven(ArrayList<Product> productList) {
+		System.out.println("--------- List of Sandwiches in Stock ---------");
+		for (Object item : productList) {
+			if(item instanceof Sandwich) {
+				System.out.println(item.toString());
+			}
+		}
+	}
+	
+	public static void optionEight(ArrayList<Product> productList) {
+		//Compare price sandwich
+	}
+	
+	public static void optionNine() {
+		//Make choice choco sandwich
+		//display choice 
+		// amount ?
+		//sold ???
+	}
+	
+	public static void optionTen() {
+		//sell gas
+		System.out.println("-------- Sell Gas --------");
+		System.out.println("Enter the amount of liters :");
+	}
+	
+	public static void optionEleven() {
+		//sell coffee
+		System.out.println("-------- Sell Coffee --------");
+		System.out.println("Select a blend");
+		System.out.println("Number of coffee: ");
+	}
+	
+	public static void optionTwelve(ArrayList<Product> productList) {
+		System.out.println("-------- Gas available in the tank --------");
+		System.out.println("	" + Double.toString(Gas.totalLiters) +"  Liters");
+		
+	}
 }

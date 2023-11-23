@@ -22,7 +22,7 @@ public class Assignment_3 {
 			System.out.println("5- Display all chocolate bars");
 			System.out.println("6- Compare two chocolate bars and display which one is healthier");
 			System.out.println("7- Display all sandwiches");
-			System.out.println("8- Compare two sandwiches");
+			System.out.println("8- Compare two sandwiches and display which one is cheaper");
 			System.out.println("9- Sell an edible item");
 			System.out.println("10- Sell gas");
 			System.out.println("11- Sell coffee");
