@@ -416,6 +416,7 @@ public class MenuOptions {
 				}
 				
 				while(true) {
+					System.out.print("Make a selection: ");
 					String inputChoiceChoco = scanner.nextLine();
 
 					if(inputChoiceChoco.trim().isEmpty()) {
@@ -487,6 +488,7 @@ public class MenuOptions {
 				}
 				
 				while(true) {
+					System.out.print("Make a selection: ");
 					String inputChoiceSandwich = scanner.nextLine();
 
 					if(inputChoiceSandwich.trim().isEmpty()) {
@@ -588,6 +590,7 @@ public class MenuOptions {
 			}
 			
 			while(true) {
+				System.out.print("Make a selection: ");
 				String inputType = scanner.nextLine();
 
 				if(inputType.trim().isEmpty()) {
@@ -613,7 +616,7 @@ public class MenuOptions {
 				if(item instanceof Gas) {
 					if(selectCount == optionType) {
 						totalPrice = ((Gas) item).getPrice(userLiters);
-						System.out.println("For "+userLiters+" liters the price will be: "+totalPrice);
+						System.out.println("For "+userLiters+" liters of "+((Gas) item).getName()+"the price will be: "+totalPrice+"$");
 					}
 					else {
 						selectCount ++;
@@ -643,6 +646,7 @@ public class MenuOptions {
 		}
 		
 		while(true) {
+			System.out.print("Make a selection: ");
 			String input = scanner.nextLine();
 
 			if(input.trim().isEmpty()) {
