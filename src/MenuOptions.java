@@ -327,7 +327,7 @@ public class MenuOptions {
 	}
 	
 	public static void optionEight(ArrayList<Product> productList) {
-		//Compare price sandwich *WIP*
+		//Compare price sandwich
 		System.out.println("-------- Comparison of 2 Sandwiches for lower price --------");
 		Sandwich sandwichOne = null;
 		Sandwich sandwichTwo = null;
@@ -353,11 +353,15 @@ public class MenuOptions {
 		} else {
 			System.out.println("First sandwich: " + sandwichOne.toString());
 			System.out.println("Second sandwich: " + sandwichTwo.toString());
-			if(sandwichOne.getPrice() > sandwichTwo.getPrice()) {
+			compareResult = sandwichOne.compareTo(sandwichTwo);
+			if(compareResult == -1) {
 				System.out.println("The first sandwich is cheaper");
 			}
-			else {
+			else if(compareResult == 1){
 				System.out.println("The second sandwich is cheaper");
+			}
+			else {
+				System.out.println("Result: Both are equal.");
 			}
 			
 		}
@@ -405,6 +409,7 @@ public class MenuOptions {
 			switch (choiceSelect) {
 			case 1:
 				System.out.println("-------- Sell Chocolate Bar --------");
+				if(containsChocoObject(productList)) {
 				System.out.println("Select a Chocolate Bar");
 				
 				//List of available blends
@@ -472,11 +477,15 @@ public class MenuOptions {
 						}	
 					}
 				}
-				
+				}else {
+						System.out.println("No Chocolate to sell");
+					
+				}
 				break;
 				
 			case 2:
 				System.out.println("-------- Sell Sandwich --------");
+				if(containsSanwichObject(productList)) {
 				System.out.println("Select a Sandwich");
 				
 				//List of available blends
@@ -544,10 +553,16 @@ public class MenuOptions {
 						}	
 					}
 				}
+				}
+				else {
+					System.out.println("No Sandwich to sell");
+				}
 				break;
 			}
 				
+			
 		} while (choiceSelect!=3);
+		
 	}
 	
 	public static void optionTen(ArrayList<Product> productList, Scanner scanner) {
@@ -559,6 +574,7 @@ public class MenuOptions {
 		int optionType;
 		
 		System.out.println("-------- Sell Gas --------");
+		if(containsGasObject(productList)) {
 		System.out.print("Enter the amount of liters :");
 		String input = scanner.nextLine();
 		
@@ -583,10 +599,12 @@ public class MenuOptions {
 		
 		//generate list of available gas to sell
 			for (Object item : productList) {
+				
 				if(item instanceof Gas) {
 					System.out.println(numberGasType+"- "+item.toString());
 					numberGasType ++;
 				}
+				
 			}
 			
 			while(true) {
@@ -617,13 +635,17 @@ public class MenuOptions {
 					if(selectCount == optionType) {
 						totalPrice = ((Gas) item).getPrice(userLiters);
 						System.out.println("For "+userLiters+" liters of "+((Gas) item).getName()+"the price will be: "+totalPrice+"$");
+						Gas.totalLiters -= userLiters;
 					}
 					else {
 						selectCount ++;
 					}	
 				}
 			}
-			
+		}
+		else {
+			System.out.println("No Gas to sell");
+		}
 	}
 	
 	public static void optionEleven(ArrayList<Product> productList, Scanner scanner) {
@@ -635,6 +657,7 @@ public class MenuOptions {
 		int optionType;
 		
 		System.out.println("-------- Sell Coffee --------");
+		if(containsCoffeeObject(productList)) {
 		System.out.println("Select a blend");
 		
 		//List of available blends
@@ -688,6 +711,7 @@ public class MenuOptions {
 					continue;
 				}
 			}
+		
 		}
 		
 		//Output of selected blend
@@ -702,7 +726,10 @@ public class MenuOptions {
 				}	
 			}
 		}
-		
+		}
+		else {
+			System.out.println("No Coffee to sell");
+		}
 	}
 	
 	public static void optionTwelve(ArrayList<Product> productList) {
@@ -711,4 +738,61 @@ public class MenuOptions {
 		System.out.println("	" + Double.toString(Gas.totalLiters) +"  Liters");
 		
 	}
+	
+	public static void displayAllItems(ArrayList<Product> productList) {
+		System.out.println("--------- List of items in Stocks---------");
+		for (Object item : productList) {
+				System.out.println(item.toString());
+		}
+	}
+	
+	public static boolean containsGasObject(ArrayList<Product> productList) {
+
+        for (Object obj : productList) {
+
+            if (obj instanceof Gas) {
+
+                return true;           
+                }        
+            }        
+        return false; 
+    }
+	
+	public static boolean containsChocoObject(ArrayList<Product> productList) {
+
+        for (Object obj : productList) {
+
+            if (obj instanceof Chocolate) {
+
+                return true;           
+                }        
+            }        
+        return false; 
+    }
+	
+	public static boolean containsSanwichObject(ArrayList<Product> productList) {
+
+        for (Object obj : productList) {
+
+            if (obj instanceof Sandwich) {
+
+                return true;           
+                }        
+            }        
+        return false; 
+    }
+	
+	public static boolean containsCoffeeObject(ArrayList<Product> productList) {
+
+        for (Object obj : productList) {
+
+            if (obj instanceof Coffee) {
+
+                return true;           
+                }        
+            }        
+        return false; 
+    }
+	
+	
 }

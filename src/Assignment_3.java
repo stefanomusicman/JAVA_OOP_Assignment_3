@@ -27,11 +27,12 @@ public class Assignment_3 {
 			System.out.println("10- Sell gas");
 			System.out.println("11- Sell coffee");
 			System.out.println("12- Display how much gas do we have in tanks");
-			System.out.println("13- Exit");	
+			System.out.println("13- Display how much gas do we have in tanks");
+			System.out.println("14- Exit");	
 
 
 			while(true) {
-				System.out.print("Please make a selction (1-13): ");
+				System.out.print("Please make a selction (1-14): ");
 				String input = userInput.nextLine();
 
 				if(input.trim().isEmpty()) {
@@ -40,7 +41,7 @@ public class Assignment_3 {
 
 					try {
 						menuSelect = Integer.parseInt(input);
-						if (menuSelect < 1 || menuSelect > 13) {
+						if (menuSelect < 1 || menuSelect > 14) {
 							System.out.println("Invalid selection! ");
 							continue;
 						}
@@ -115,9 +116,14 @@ public class Assignment_3 {
 				System.out.println("Press Enter to return to main menu...");
 				userInput.nextLine();
 				break;
+			case 13:
+				MenuOptions.displayAllItems(productsList);
+				System.out.println("Press Enter to return to main menu...");
+				userInput.nextLine();
+				break;
 			}
 		
-		} while (menuSelect!=13);
+		} while (menuSelect!=14);
 		
 		System.out.println("Exiting the program.");
 		userInput.close();
