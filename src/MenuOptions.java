@@ -470,7 +470,8 @@ public class MenuOptions {
 					if(item instanceof Chocolate) {
 						if(selectCount == optionType) {
 							totalPrice = ((Chocolate) item).getPrice()*userAmountProd;
-							System.out.println("For "+userAmountProd+" chocolate bar(s) of "+((Chocolate) item).getName()+" the price will be: "+totalPrice);
+							System.out.println("For "+userAmountProd+" chocolate bar(s) of "+((Chocolate) item).getName()+" the price will be: "+totalPrice+"$");
+							break;
 						}
 						else {
 							selectCount ++;
@@ -546,7 +547,8 @@ public class MenuOptions {
 					if(item instanceof Sandwich) {
 						if(selectCount == optionType) {
 							totalPrice = ((Sandwich) item).getPrice()*userAmountProd;
-							System.out.println("For "+userAmountProd+" sandwich(es) of "+((Sandwich) item).getName()+" the price will be: "+totalPrice);
+							System.out.println("For "+userAmountProd+" sandwich(es) of "+((Sandwich) item).getName()+" the price will be: "+totalPrice+"$");
+							break;
 						}
 						else {
 							selectCount ++;
@@ -634,8 +636,9 @@ public class MenuOptions {
 				if(item instanceof Gas) {
 					if(selectCount == optionType) {
 						totalPrice = ((Gas) item).getPrice(userLiters);
-						System.out.println("For "+userLiters+" liters of "+((Gas) item).getName()+"the price will be: "+totalPrice+"$");
+						System.out.println("For "+userLiters+" liters of "+((Gas) item).getName()+" the price will be: "+totalPrice+"$");
 						Gas.totalLiters -= userLiters;
+						break;
 					}
 					else {
 						selectCount ++;
@@ -719,7 +722,8 @@ public class MenuOptions {
 			if(item instanceof Coffee) {
 				if(selectCount == optionType) {
 					totalPrice = ((Coffee) item).getPrice()*userCups;
-					System.out.println("For "+userCups+" Cup(s) of "+((Coffee) item).getBlend()+" the price will be: "+totalPrice);
+					System.out.println("For "+userCups+" Cup(s) of "+((Coffee) item).getBlend()+" the price will be: "+totalPrice+"$");
+					break;
 				}
 				else {
 					selectCount ++;

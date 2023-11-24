@@ -8,7 +8,8 @@ public class Gas extends Product {
 	static double totalLiters = 1000;
 	
 	public double getPrice(double usernum) {
-		return super.getPrice() * usernum;	
+		
+		return Math.round((super.getPrice() * usernum)*100)/100;	
 	}
 	
 	public String toString() {
