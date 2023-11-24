@@ -1,3 +1,6 @@
+// Mickael Lavigeur-Leduc - 202234349
+// Stefano Proietti - 2012831
+
 import java.util.ArrayList;
 import java.util.Scanner;
 

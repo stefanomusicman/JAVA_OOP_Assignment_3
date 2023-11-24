@@ -1,3 +1,5 @@
+// Mickael Lavigeur-Leduc - 202234349
+// Stefano Proietti - 2012831
 
 public class Gas extends Product {
 	
